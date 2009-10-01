@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+  xmlns:html="http://struts.apache.org/tags-html"
+  version="2.0">
+  <jsp:output doctype-root-element="html"
+    doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
+    doctype-system="http://www.w3c.org/TR/xhtml1/DTD/xhtml11-strict.dtd"/>
+  <jsp:directive.page contentType="text/html"/>
+  <html:xhtml/>
+  <html:html>
+    <head>
+      <title>
+        <fmt:message key="global.title"/>
+        <jsp:text>
+        </jsp:text>
+        <fmt:message key="list.title"/>
+      </title>
+      <style type="text/css">
+        @import url(<c:url value="/authdb.css"/>);
+      </style>
+      <html:base/>
+    </head>
+    <body>
+      <h1>
+        <fmt:message key="global.heading"/>
+        <jsp:text>
+        </jsp:text>
+        <fmt:message key="list.heading"/>
+	    </h1>
+      <c:if test="${not (empty requestScope.messageKey)}">
+        <h3>
+     	    <fmt:message key="${requestScope.messageKey}"/>
+   	    </h3>
+   	  </c:if>
+   	  <html:errors/>
+      <c:choose>
+        <c:when test="${empty listForm.map.users}">
+          <p>No entries found.</p>
+        </c:when>
+        <c:otherwise>
+          <table class="usertable">
+            <thead>
+            <tr>
+              <th>
+                <fmt:message key="list.column.id"/>
+              </th>
+              <th>
+                <fmt:message key="list.column.password"/>
+              </th>
+              <th>
+                <fmt:message key="list.column.roles"/>
+              </th>
+              <th>
+                <fmt:message key="list.column.actions"/>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${listForm.map.users}" var="entry">
+              <c:set var="id" value="${entry.id}"/>
+              <tr>
+                <td>
+                  <c:out value="${entry.id}"/>
+                </td>
+                <td>
+                  <c:out value="${entry.password}"/>
+                </td>
+                <td>
+                  <c:out value="${entry.roles}"/>
+                </td>
+                <td>
+                  <html:link action="/admin/edit" paramId="id" paramName="id">
+                    Edit</html:link>
+                  <jsp:text> </jsp:text>
+                  <html:link action="/admin/delete" paramId="id"
+                    paramName="id">Delete</html:link>
+                </td>
+              </tr>
+            </c:forEach>
+			</tbody>
+          </table>
+        </c:otherwise>
+      </c:choose>
+      <div>
+        <html:link action="/admin/add">Add Entry</html:link>
+        |
+        <html:link action="/admin/list">Refresh List</html:link>
+      </div>
+    </body>
+  </html:html>
+</jsp:root>

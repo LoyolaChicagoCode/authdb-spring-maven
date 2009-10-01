@@ -1,0 +1,34 @@
+body {
+	background: orange;
+	font-family: sans-serif;
+	color: black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: blue;
+}
+
+h1 {
+	letter-spacing: 0.1em
+}
+
+table.usertable, table.usertable * th, table.usertable * td {
+	border-style: outset;
+	border-width: thin;
+}
+
+:link {
+	text-decoration: none;
+}
+
+:visited {
+	text-decoration: none;
+}
+
+:link :hover,:visited :hover {
+	text-decoration: underline;
+}
+
+:link :active,:visited :active {
+	text-decoration: none;
+}

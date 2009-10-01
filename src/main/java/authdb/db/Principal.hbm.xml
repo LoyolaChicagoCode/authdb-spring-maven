@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+CREATE TABLE PRINCIPALS(PRINCIPALID VARCHAR(256) NOT NULL PRIMARY KEY,PASSWORD VARCHAR(256) NOT NULL)
+CREATE TABLE ROLES(PRINCIPALID VARCHAR(256) NOT NULL,ROLEGROUP VARCHAR(256) NOT NULL,ROLE VARCHAR(256) NOT NULL,CONSTRAINT SYS_FK_1 FOREIGN KEY(PRINCIPALID) REFERENCES PRINCIPALS(PRINCIPALID))  
+-->
+
+<hibernate-mapping>
+    <class name="authdb.db.Principal" table="PRINCIPALS" >
+        <id name="id" column="PRINCIPALID" type="string">
+          <generator class="assigned"/>
+        </id>
+        <property name="password" column="PASSWORD" type="string" not-null="true"/>
+        <set name="realRoles" table="ROLES" lazy="false">
+          <key column="PRINCIPALID"/>
+          <composite-element class="authdb.db.Role">
+            <property name="role" column="ROLE" type="string"/>
+            <property name="roleGroup" column="ROLEGROUP" type="string"/>
+          </composite-element>        
+        </set>
+    </class>
+</hibernate-mapping>

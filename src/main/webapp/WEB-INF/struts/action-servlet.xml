@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd"> 
+
+<beans> 
+
+  <!-- This context defines one Spring bean for each Struts action -->
+
+  <bean id="userManagerAction" class="authdb.ui.UserManagerAction">
+    <property name="userManager" ref="userDao"/>
+  </bean>
+    
+  <alias name="userManagerAction" alias="/admin/init"/>
+    
+  <alias name="userManagerAction" alias="/admin/list"/>
+
+  <alias name="userManagerAction" alias="/admin/addSubmit"/>
+
+  <alias name="userManagerAction" alias="/admin/edit"/>
+
+  <alias name="userManagerAction" alias="/admin/editSubmit"/>
+
+  <alias name="userManagerAction" alias="/admin/delete"/>
+
+</beans>

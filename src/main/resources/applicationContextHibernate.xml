@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd"> 
+
+<beans> 
+
+  <bean id="userDataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+    <property name="jndiName" value="java:comp/env/jdbc/authdb"/> 
+  </bean> 
+
+  <bean id="userSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> 
+    <property name="mappingResources"> 
+      <list> 
+        <value>authdb/db/Principal.hbm.xml</value> 
+      </list> 
+    </property> 
+    <property name="hibernateProperties"> 
+      <props> 
+        <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop> 
+        <prop key="hibernate.show_sql">true</prop> 
+      </props> 
+    </property> 
+    <property name="dataSource" ref="userDataSource"/> 
+  </bean> 
+
+  <bean id="userDao" class="authdb.db.HibernateUserManager"> 
+    <property name="sessionFactory" ref="userSessionFactory"/> 
+    <property name="sessionFactoryName" value="userSessionFactory"/> 
+  </bean>
+
+</beans>

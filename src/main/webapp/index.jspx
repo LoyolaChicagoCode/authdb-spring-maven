@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+  xmlns:html="http://struts.apache.org/tags-html"
+  version="2.0">
+  <jsp:output doctype-root-element="html"
+    doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
+    doctype-system="http://www.w3c.org/TR/xhtml1/DTD/xhtml11-strict.dtd"/>
+  <jsp:directive.page contentType="text/html"/>
+  <html:xhtml/>
+  <html:html>
+    <head>
+      <title>
+        <fmt:message key="global.title"/>
+        <jsp:text>
+        </jsp:text>
+        <fmt:message key="index.title"/>
+      </title>
+      <style type="text/css">
+        @import url(<c:url value="/authdb.css"/>);
+      </style>
+      <html:base/>
+    </head>
+    <body>
+      <c:if test='${empty applicationScope["org.apache.struts.action.MESSAGE"]}'>
+        <h1> ERROR: Application resources not loaded - check servlet container
+          logs for error messages. </h1>
+      </c:if>
+      <h1>
+        <fmt:message key="global.heading"/>
+        <jsp:text>
+        </jsp:text>
+        <fmt:message key="index.heading"/>
+      </h1>
+   	  <html:errors/>
+      <p>This Struts application illustrates various points:</p>
+      <ul>
+        <li>Use of dynamic action form beans (with validation)</li>
+        <li>Use of JSTL to iterate over collections and to
+          produce item-specific links</li>
+        <li>Chaining of actions by forwarding to another action instead of a view</li>
+        <li>Hiding the views inside /WEB-INF and other good project organization practices</li>
+        <li>Declarative exception handling</li>
+        <li>Context-independent CSS stylesheet reference (not entirely trivial)</li>
+        <li>Use of <a href="http://www.hibernate.org/">Hibernate</a>
+          as the object-relational tier between the
+          user interaction tier and the database</li>
+        <li>Use of the <a href="http://www.springframework.org/">Spring Framework</a>
+          to make Hibernate manageable.
+        </li>
+        <li>Use of the Spring Framework to expose business objects to a web
+          application.</li>
+      </ul>
+      <p>Some of these points are described
+        <html:link href="http://www.onjava.com/pub/a/onjava/2002/10/30/jakarta.html">here</html:link>
+        or in your Struts book.
+      </p>
+      <div>
+        <html:link action="/admin/list">Enter Application</html:link>
+        |
+        <html:link action="/admin/init">Reinitialize Application Data</html:link>
+      </div>
+    </body>
+  </html:html>
+</jsp:root>
