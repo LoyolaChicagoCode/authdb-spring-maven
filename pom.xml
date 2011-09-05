@@ -2,8 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>AuthDb4oSpringStripesMaven</groupId>
-	<artifactId>AuthDb4oSpringStripesMaven
-	</artifactId>
+	<artifactId>authdb-spring-maven</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>AuthDb4oSpringStripesMaven
